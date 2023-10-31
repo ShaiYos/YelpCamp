@@ -1,19 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show</title>
-</head>
-<body>
-    <h1>Details Of <%= c.title %>:</h1>
-    <h2><%= c.title %></h2>
-    <h2><%= c.location %></h2>
-   
-    <p><a href="/campgrounds/<%= c._id %>/edit" > Edit</a></p>
-    <p> <a href="/campgrounds" >All campgrounds</a></p>
-    <form action="/campgrounds/<%=c._id %>?_method=DELETE" method="POST" >
-        <button>Delete</button>
-    </form>
-</body>
-</html> 
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card mb-3">
+            <img src="<%= c.image %>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= c.title %></h5>
+              <p class="card-text"><%= c.description %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-muted"><%= c.location %></li>
+              <li class="list-group-item text-muted">Price: <%= c.price %>$ per night</li>
+            </ul>
+            <div class="card-body">
+                <a class="card-link btn btn-primary"href="/campgrounds/<%= c._id %>/edit" class="card-link">Edit</a>
+                <form class="d-inline" action="/campgrounds/<%=c._id %>?_method=DELETE" method="POST" >
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+            <div class="card-footer text-muted">
+                2 days ago
+              </div>
+          </div>
+    </div>
+</div>
