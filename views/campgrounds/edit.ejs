@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate') %>
+<div class="row">
 <h1 class="text-center">Edit Campground</h1>
     <div class="col-6 offset-3">
         <form action="/campgrounds/<%=c._id %>?_method=PATCH" method="POST" novalidate class="validated-form">
@@ -45,10 +46,10 @@
                     Looks good!
                 </div>
             </div>
-            
             <div class="mb-3">
                 <button class="btn btn-info">Update Campground</button>
-            </div>
-            
+            </div>  
         </form>
         <p><a href="/campgrounds/<%=c._id %>">cancel editing</a></p>
+    </div>
+</div>
