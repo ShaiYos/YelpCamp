@@ -1,14 +1,24 @@
 
+if(process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const expressError = require('./utils/expressError');
-const campgroundsRouter = require('./routes/campgrounds');
-const reviewsRouter = require('./routes/reviews');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
+const passportLocal = require('passport-local')
+const User = require('./models/user')
+
+const campgroundsRouter = require('./routes/campgrounds');
+const reviewsRouter = require('./routes/reviews');
+const usersRouter = require('./routes/users');
 
 mongoose.connect('mongodb://127.0.0.1:27017/yelpCamp')
     .then(() => {
@@ -42,13 +52,21 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new passportLocal(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req,res,next) => {
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
 })
 
-
+app.use('/', usersRouter)
 app.use('/campgrounds', campgroundsRouter);
 app.use('/campgrounds/:id/reviews', reviewsRouter);
 
@@ -57,8 +75,6 @@ app.use('/campgrounds/:id/reviews', reviewsRouter);
 app.get('/', (req,res) => {
     res.render('home');
 })
-
-
 
 // in case no route is fit
 app.all('*', (req,res,next) => {

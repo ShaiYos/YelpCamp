@@ -6,8 +6,9 @@ module.exports.validateCamps = Joi.object({
         location: Joi.string().required(),
         price: Joi.number().required().min(0),
         description: Joi.string().required(),
-        image: Joi.string().required()
-    }).required()
+        //image: Joi.string().required()
+    }).required(),
+    deleteImages: Joi.array()
 });
 
 module.exports.validateReviews = Joi.object({
