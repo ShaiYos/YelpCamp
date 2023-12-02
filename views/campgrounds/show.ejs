@@ -22,7 +22,6 @@
         </button>
         <% } %>
       </div>
-
         <div class="card mb-3">
             <div class="card-body">
               <h5 class="card-title"><%= c.title %></h5>
@@ -54,7 +53,7 @@
       <form class="mb-3 validated-form" action="/campgrounds/<%=c._id %>/reviews" method="POST" novalidate> 
         <!-- <label class="form-label" for="rating" >Rating</label>
         <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating" > -->
-        <div class="mb-3">
+        <div>
           <fieldset class="starability-growRotate">
             <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
             <input type="radio" id="first-rate1" name="review[rating]" value="1" />

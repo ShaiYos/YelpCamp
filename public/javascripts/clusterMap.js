@@ -38,11 +38,11 @@ map.addLayer({
         'circle-color': [
             'step',
             ['get', 'point_count'],
-            '#f59e0b',
+            '#E2C799',
             10,
-            '#b45309',
+            '#FFCF9D',
             30,
-            '#92400e'
+            '#FFB000'
         ],
         'circle-radius': [
             'step',
@@ -74,7 +74,7 @@ map.addLayer({
     source: 'campgrounds',
     filter: ['!', ['has', 'point_count']],
     paint: {
-        'circle-color': '#f59e0b',
+        'circle-color': '#FFB000',
         'circle-radius': 4,
         'circle-stroke-width': 1,
         'circle-stroke-color': '#fff'
