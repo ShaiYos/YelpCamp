@@ -73,3 +73,7 @@ module.exports.deleteCampground = async (req,res) => {
     req.flash('success', 'Successfully deleted campground!')
     res.redirect('/campgrounds');
 }
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}

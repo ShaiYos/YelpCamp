@@ -17,16 +17,19 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="email">Email</label>
-                            <input class="form-control" placeholder="sophie@example.com" pattern=".+@example\.com" type="email" id="email" name="email" required>
+                            <input class="form-control" placeholder="sophie@example.com" type="email" id="email" name="email" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="password">Password</label>
-                            <input class="form-control" type="password" id="password" name="password" required>
+                            <input class="form-control" pattern=".{8,12}" type="password" id="password" name="password" required>
                             <div class="valid-feedback">
                                 Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Your password must have a min length of 8 and max length of 12
                             </div>
                         </div>
                         <button class="btn btn-success btn-block">Register</button>
